@@ -35,5 +35,5 @@ router = {'hostname': '192.168.146.1',
 
 commands = ['sh ip int', 'sh ip arp']
 
-with open(f"{/home/alexandru/WebForARP_Work/cisco_ip_int_arp/router['hostname']}_result.txt") as file:
+with open(f"/home/alexandru/WebForARP_Work/cisco_ip_int_arp/{router['hostname']}_result.txt") as file:
     file.write(show_command(commands, **router))
