@@ -4,6 +4,9 @@
 #======================================
 
 name: GitHubActions-WebForArp
+env: 
+  APPLICATION_NAME: "WebForARP"
+  DEPLOY_PACKAGE_NAME: "WebForARP-app-ver${{ github.sha }}"
 
 on: 
   push:
@@ -21,6 +24,7 @@ jobs:
           run: |
             echo "Hello message1"
             echo "Hello message1"
+            echo "Printing Global ENV variable ${{ env.DEPLOY_PACKAGE_NAME }}"
         - name: List current folder
           run: ls -la
         - name: Git clone my repo
@@ -31,8 +35,21 @@ jobs:
     my_deploy:
       runs-on: [ubuntu-latest]
       needs: [my_testing]
+      env:
+        VAR1: "Job variable 1"
+        VAR2: "Job variable 2"
       steps:
         - name: Print nice message from Deploy
           run: echo "Hello World from deploy"
         - name: List current folder
           run: ls -la
+        - name: Printing some info
+          run: echo "App name is ${{ env.APPLICATION_NAME }}"
+        - name: Printing some more info
+          run: |
+            echo "VAR1 = ${{ env.VAR1 }}"
+            echo "VAR = ${{ env.VAR2 }}"
+        - name: Print super local env var
+          run: echo "this is local variable $LOCAL_VAR1 "
+          env:
+            LOCAL_VAR1: "Hello I am local var"
