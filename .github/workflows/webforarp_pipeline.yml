@@ -53,3 +53,7 @@ jobs:
           run: echo "this is local variable $LOCAL_VAR1 "
           env:
             LOCAL_VAR1: "Hello I am local var"
+        - name: Check if command exist
+          run: python --version
+        - name: Check if ZIP exist
+          run: zip --version
