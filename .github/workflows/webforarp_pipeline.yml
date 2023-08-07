@@ -1,0 +1,25 @@
+#======================================
+# GitHub Actions WebForArp
+# (c) Copyleft by Gl Alexandru 2023
+#======================================
+
+name: GitHubActions-WebForArp
+
+on: 
+  push:
+    branches: 
+      - master
+
+
+jobs:
+    my_testing:
+      runs-on: [ubuntu-latest]
+      steps:
+        - name: Print nice message from Testing
+          run: echo "Hello World from test"
+
+    my_deploy:
+      runs-on: [ubuntu-latest]
+      steps:
+        - name: Print nice message from Deploy
+          run: echo "Hello World from deploy"
