@@ -8,7 +8,7 @@ name: GitHubActions-WebForArp
 on: 
   push:
     branches: 
-      - master
+      - main
 
 
 jobs:
