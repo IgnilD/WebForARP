@@ -8,11 +8,11 @@ def show_command(commands, **router):
     ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     ssh_client.connect(**router)
     shell = ssh_client.invoke_shell()
-    shell.send("terminal length 0\n".encode("bytes"))
+    shell.send("terminal length 0\n")
 
     result = {}
     for command in commands:
-        shell.send(f"{command}\n".encode("bytes"))
+        shell.send(f"{command}\n")
         time.sleep(1)
         output = shell.recv(10000)
         output = output.decode('utf-8')
