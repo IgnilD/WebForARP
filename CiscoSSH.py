@@ -8,11 +8,11 @@ def show_command(commands, **router):
     ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     ssh_client.connect(**router)
     shell = ssh_client.invoke_shell()
-    shell.send("terminal length 0\n")
+    shell.send("terminal length 0\n".encode("bytes"))
 
     result = {}
     for command in commands:
-        shell.send(f"{command}\n")
+        shell.send(f"{command}\n".encode("bytes"))
         time.sleep(1)
         output = shell.recv(10000)
         output = output.decode('utf-8')
@@ -35,5 +35,7 @@ router = {'hostname': '192.168.146.1',
 
 commands = ['sh ip int', 'sh ip arp']
 
-with open(f"/home/alexandru/WebForARP_Work/cisco_ip_int_arp/{router['hostname']}_result.txt") as file:
-    file.write(show_command(commands, **router))
+print(show_command(commands, **router))
+
+# with open(file=f"{router['hostname']}_result.txt", mode="w") as file:
+#     file.write(show_command(commands, **router))
